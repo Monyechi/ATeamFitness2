@@ -57,6 +57,15 @@
                     <ul>
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Trainer"))
+                            {
+                                <li>
+                                    <a asp-area="" asp-controller="PersonalTrainers" asp-action="CustomerList">Create Time Block</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>

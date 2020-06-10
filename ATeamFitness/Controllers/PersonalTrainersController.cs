@@ -169,5 +169,16 @@ namespace ATeamFitness.Controllers
         {
             return _context.PersonalTrainers.Any(e => e.PersonalTrainerId == id);
         }
+
+        // POST: PersonalTrainers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTimeBlock(int id)
+        {
+            var personalTrainer = await _context.PersonalTrainers.FindAsync(id);
+            _context.PersonalTrainers.Remove(personalTrainer);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
