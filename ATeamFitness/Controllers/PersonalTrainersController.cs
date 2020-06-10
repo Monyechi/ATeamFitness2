@@ -170,15 +170,15 @@ namespace ATeamFitness.Controllers
             return _context.PersonalTrainers.Any(e => e.PersonalTrainerId == id);
         }
 
-        // POST: PersonalTrainers/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTimeBlock(int id)
+        public async Task<IActionResult> CreateTimeBlock()
         {
-            var personalTrainer = await _context.PersonalTrainers.FindAsync(id);
-            _context.PersonalTrainers.Remove(personalTrainer);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var personalTrainerTimeBlock = personalTrainer.TimeBlocks.ToList();
+            
+            return View(personalTrainerTimeBlock);
         }
     }
 }
