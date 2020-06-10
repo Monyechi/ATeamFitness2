@@ -162,15 +162,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b5f4a598-a6f9-4063-8a80-6efc671e93f6",
-                            ConcurrencyStamp = "bb8a6bee-5030-4675-a5a8-0b13ccb46d68",
+                            Id = "6ae3cb03-1e55-4c13-b63c-47cc0f553270",
+                            ConcurrencyStamp = "8653ce92-56ad-48ac-91a8-040d794c35bb",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "cf0dd966-e1c9-4231-8a07-ffcebc147123",
-                            ConcurrencyStamp = "b84ec3f5-7a82-422d-a357-c58c08b2e096",
+                            Id = "b7c229c4-1279-46b5-b64a-d4b0f38fcc57",
+                            ConcurrencyStamp = "a30b4705-a874-4802-bf27-c600ddef8759",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
