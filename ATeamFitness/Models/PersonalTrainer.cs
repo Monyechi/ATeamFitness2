@@ -20,6 +20,7 @@ namespace ATeamFitness.Models
         public string Bio { get; set; }
         public string TrainerLocation { get; set; }
         public int Rating { get; set; }
+        public List<TimeBlock> TimeBlocks { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
