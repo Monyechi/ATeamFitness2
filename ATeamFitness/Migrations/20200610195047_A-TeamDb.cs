@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ATeamFitness.Migrations
 {
-    public partial class NewMiration : Migration
+    public partial class ATeamDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -217,11 +217,18 @@ namespace ATeamFitness.Migrations
                     Date = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
+                    CustomerId = table.Column<int>(nullable: true),
                     PersonalTrainerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TimeBlock", x => x.TimeBlockId);
+                    table.ForeignKey(
+                        name: "FK_TimeBlock_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TimeBlock_PersonalTrainers_PersonalTrainerId",
                         column: x => x.PersonalTrainerId,
@@ -233,12 +240,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6ae3cb03-1e55-4c13-b63c-47cc0f553270", "8653ce92-56ad-48ac-91a8-040d794c35bb", "Customer", "CUSTOMER" });
+                values: new object[] { "cd570bde-ffe6-48f6-9efa-bf010c15c813", "13cedac6-e388-47e7-af96-4055a2af86f5", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b7c229c4-1279-46b5-b64a-d4b0f38fcc57", "a30b4705-a874-4802-bf27-c600ddef8759", "Trainer", "TRAINER" });
+                values: new object[] { "d0656e74-ecff-4821-9517-750144b8c0f9", "c61a7941-c174-4b68-bd1e-27b221305dea", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -290,6 +297,11 @@ namespace ATeamFitness.Migrations
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TimeBlock_CustomerId",
+                table: "TimeBlock",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TimeBlock_PersonalTrainerId",
                 table: "TimeBlock",
                 column: "PersonalTrainerId");
@@ -313,13 +325,13 @@ namespace ATeamFitness.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
                 name: "TimeBlock");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "PersonalTrainers");

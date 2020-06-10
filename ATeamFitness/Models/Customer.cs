@@ -22,6 +22,7 @@ namespace ATeamFitness.Models
         public string FitnessPlan { get; set; }
         public string DietPlan { get; set; }
         public int RewardPoint { get; set; }
+        public List<TimeBlock> TimeBlocks { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

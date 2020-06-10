@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATeamFitness.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200610173634_NewMiration")]
-    partial class NewMiration
+    [Migration("20200610195047_A-TeamDb")]
+    partial class ATeamDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,6 +116,9 @@ namespace ATeamFitness.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
@@ -129,6 +132,8 @@ namespace ATeamFitness.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TimeBlockId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("PersonalTrainerId");
 
@@ -164,15 +169,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6ae3cb03-1e55-4c13-b63c-47cc0f553270",
-                            ConcurrencyStamp = "8653ce92-56ad-48ac-91a8-040d794c35bb",
+                            Id = "cd570bde-ffe6-48f6-9efa-bf010c15c813",
+                            ConcurrencyStamp = "13cedac6-e388-47e7-af96-4055a2af86f5",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "b7c229c4-1279-46b5-b64a-d4b0f38fcc57",
-                            ConcurrencyStamp = "a30b4705-a874-4802-bf27-c600ddef8759",
+                            Id = "d0656e74-ecff-4821-9517-750144b8c0f9",
+                            ConcurrencyStamp = "c61a7941-c174-4b68-bd1e-27b221305dea",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
@@ -363,6 +368,10 @@ namespace ATeamFitness.Migrations
 
             modelBuilder.Entity("ATeamFitness.Models.TimeBlock", b =>
                 {
+                    b.HasOne("ATeamFitness.Models.Customer", null)
+                        .WithMany("TimeBlocks")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("ATeamFitness.Models.PersonalTrainer", null)
                         .WithMany("TimeBlocks")
                         .HasForeignKey("PersonalTrainerId");
