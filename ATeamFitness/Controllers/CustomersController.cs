@@ -43,15 +43,15 @@ namespace ATeamFitness.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var PersonalTrainers = await _context.PersonalTrainers
                 .Include(c => c.IdentityUser)
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (customer == null)
+                .FirstOrDefaultAsync(m => m.PersonalTrainerId == id);
+            if (PersonalTrainers== null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(PersonalTrainers);
         }
 
         // GET: Customers/Create

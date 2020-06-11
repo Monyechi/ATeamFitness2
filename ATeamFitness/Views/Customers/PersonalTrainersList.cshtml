@@ -26,7 +26,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>           
             <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+               
+                @Html.ActionLink("Details", "Details", new {  id=item.PersonalTrainerId }) |
+                @Html
             </td>
         </tr>
 }
