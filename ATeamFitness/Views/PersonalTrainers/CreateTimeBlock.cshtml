@@ -1,0 +1,27 @@
+﻿@model ATeamFitness.Models.TimeBlock
+
+@{
+    ViewData["Title"] = "CreateTimeBlock";
+}
+
+<h1>CreateTimeBlock</h1>
+
+<div>
+        <form asp-action="CreateTimeBlock">
+            <div class="form-group">
+                <label asp-for="Date">Select Date:&nbsp;&nbsp;</label>&nbsp;
+                <input id="Date" name="Date" type="date" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Time">Select Time:&nbsp;&nbsp;</label>&nbsp;
+                <input type="time" id="Time" name="Time">
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Time-Block" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>

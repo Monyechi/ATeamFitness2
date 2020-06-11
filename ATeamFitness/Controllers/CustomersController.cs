@@ -167,5 +167,12 @@ namespace ATeamFitness.Controllers
         {
             return _context.Customers.Any(e => e.CustomerId == id);
         }
+
+        public async Task<IActionResult> PersonalTrainersList()
+        {
+           var personalTrainersList = _context.PersonalTrainers.ToList();
+           
+            return View(personalTrainersList);
+        }
     }
 }

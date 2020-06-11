@@ -1,73 +1,13 @@
 ﻿@model ATeamFitness.Models.PersonalTrainer
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Details</h1>
+<style>
+    body {
+        background-image: url("http://cdn29.us1.fansshare.com/images/wallpapergym/ripped-abs-wallpaper-1481818443.jpg");
+        background-size: cover;
+    }
+</style>
 
-<div>
-    <h4>PersonalTrainer</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Specialization)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Specialization)
-        </dd>
-        <dt hidden class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Schedule)
-        </dt>
-        <dd hidden class = "col-sm-10">
-            @Html.DisplayFor(model => model.Schedule)
-        </dd>
-        <dt hidden class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkoutCalendar)
-        </dt>
-        <dd hidden class = "col-sm-10">
-            @Html.DisplayFor(model => model.WorkoutCalendar)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
-        <dt hidden class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainerLocation)
-        </dt>
-        <dd hidden class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainerLocation)
-        </dd>
-        <dt hidden class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd hidden class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-        <dt hidden class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdentityUser)
-        </dt>
-        <dd hidden class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdentityUser.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PersonalTrainerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>

@@ -62,7 +62,13 @@
                             if (User.IsInRole("Trainer"))
                             {
                                 <li>
-                                    <a asp-area="" asp-controller="PersonalTrainers" asp-action="CustomerList">Create Time Block</a>
+                                    <a asp-area="" asp-controller="PersonalTrainers" asp-action="CreateTimeBlock">Create Time Block</a>
+                                </li>
+                            }
+                            if (User.IsInRole("Customer"))
+                            {
+                                <li>
+                                    <a asp-area="" asp-controller="Customers" asp-action="PersonalTrainersList">Find A Personal Trainer</a>
                                 </li>
                             }
                         }

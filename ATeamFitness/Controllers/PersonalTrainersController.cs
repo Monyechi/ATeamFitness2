@@ -170,15 +170,33 @@ namespace ATeamFitness.Controllers
             return _context.PersonalTrainers.Any(e => e.PersonalTrainerId == id);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> CreateTimeBlock()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var personalTrainerTimeBlock = personalTrainer.TimeBlocks.ToList();
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            //var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+
+            //if (personalTrainer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateTimeBlock(int id, [Bind("TimeBlockId,Date,Time,Location")] TimeBlock timeBlockViewModel)
+        {
+            var personalTrainer = await _context.PersonalTrainers
+                .Include(p => p.IdentityUser)
+                .FirstOrDefaultAsync(m => m.PersonalTrainerId == id); 
+                 personalTrainer.TimeBlocks.Add(timeBlockViewModel);
+                _context.SaveChanges();
+
             
-            return View(personalTrainerTimeBlock);
+
+            return View();
         }
     }
+    
 }
