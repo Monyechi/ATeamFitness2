@@ -185,15 +185,13 @@ namespace ATeamFitness.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTimeBlock(int id, [Bind("TimeBlockId,Date,Time,Location")] TimeBlock timeBlockViewModel)
+        public async Task<IActionResult> CreateTimeBlock(int id, [Bind("TimeBlockId,Date,Time,Location")] TimeBlock timeBlock)
         {
-            var personalTrainer = await _context.PersonalTrainers
-                .Include(p => p.IdentityUser)
-                .FirstOrDefaultAsync(m => m.PersonalTrainerId == id); 
-                 personalTrainer.TimeBlocks.Add(timeBlockViewModel);
-                _context.SaveChanges();
 
-            
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            personalTrainer.TimeBlocks.Add(timeBlock);
+            _context.SaveChanges();            
 
             return View();
         }
