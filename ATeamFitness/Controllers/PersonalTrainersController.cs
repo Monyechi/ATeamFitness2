@@ -193,7 +193,7 @@ namespace ATeamFitness.Controllers
             personalTrainer.TimeBlocks.Add(timeBlock);
             _context.SaveChanges();            
 
-            return View();
+            return View(personalTrainer);
         }
     }
     

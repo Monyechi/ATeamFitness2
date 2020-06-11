@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ATeamFitness.Migrations
 {
-    public partial class ATeamDb : Migration
+    public partial class new1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -240,12 +240,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "cd570bde-ffe6-48f6-9efa-bf010c15c813", "13cedac6-e388-47e7-af96-4055a2af86f5", "Customer", "CUSTOMER" });
+                values: new object[] { "816b9b7a-3da7-496d-8151-7eb0d4001007", "a231b9f8-f3b2-490a-89a7-65a1d65376f1", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d0656e74-ecff-4821-9517-750144b8c0f9", "c61a7941-c174-4b68-bd1e-27b221305dea", "Trainer", "TRAINER" });
+                values: new object[] { "e010cf21-96b2-4df8-b73a-385f87bcb57f", "215f1aa8-68de-4fcd-bc52-bd0d7e821b3d", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

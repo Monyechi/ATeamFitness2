@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATeamFitness.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200611024416_newMigration")]
-    partial class newMigration
+    [Migration("20200611142213_new1")]
+    partial class new1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,15 +169,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f7ee6d84-08f3-492f-85d3-fd9e732b37d8",
-                            ConcurrencyStamp = "3d553cd1-2718-43ba-9b39-907db7182a0f",
+                            Id = "816b9b7a-3da7-496d-8151-7eb0d4001007",
+                            ConcurrencyStamp = "a231b9f8-f3b2-490a-89a7-65a1d65376f1",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "87e4dd44-4bd0-4383-a366-768d77847f77",
-                            ConcurrencyStamp = "2c4e99a9-c315-4724-b39e-e871040e16c5",
+                            Id = "e010cf21-96b2-4df8-b73a-385f87bcb57f",
+                            ConcurrencyStamp = "215f1aa8-68de-4fcd-bc52-bd0d7e821b3d",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
