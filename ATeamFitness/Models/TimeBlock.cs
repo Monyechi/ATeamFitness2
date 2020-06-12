@@ -12,6 +12,7 @@ namespace ATeamFitness.Models
     {
         [Key]
         public string TimeBlockId { get; set; }
+        public string TimeBlockKey { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
         public string Location { get; set; }

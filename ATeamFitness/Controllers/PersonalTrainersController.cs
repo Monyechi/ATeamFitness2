@@ -74,6 +74,7 @@ namespace ATeamFitness.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 personalTrainer.IdentityUserId = userId;
+                personalTrainer.TimeBlockId = GenerateRandomAlphanumericString();
                 _context.Add(personalTrainer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -184,7 +185,7 @@ namespace ATeamFitness.Controllers
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             TimeBlock newTimeBlock = new TimeBlock();
             newTimeBlock = timeBlock;
-            newTimeBlock.TimeBlockId = personalTrainer.IdentityUserId;
+            newTimeBlock.TimeBlockId = personalTrainer.TimeBlockId;
             _context.TimeBlocks.Add(newTimeBlock);
             _context.SaveChanges();
 
@@ -195,10 +196,24 @@ namespace ATeamFitness.Controllers
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockId == personalTrainer.IdentityUserId).SingleOrDefault();
+            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockId == personalTrainer.TimeBlockId).ToList();
             
 
             return View(personalTrainerTimeBlocks);
+        }
+        public string GenerateRandomAlphanumericString()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[50];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+            return finalString;
         }
 
 

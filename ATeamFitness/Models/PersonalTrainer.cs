@@ -12,7 +12,7 @@ namespace ATeamFitness.Models
     {
         [Key]
         public int PersonalTrainerId { get; set; }
-        public int TimeBlockId { get; set; }
+        public string TimeBlockId { get; set; }
         public string Name { get; set; }
         public int ZipCode { get; set; }
         public string Specialization { get; set; }
