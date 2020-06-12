@@ -12,6 +12,7 @@ namespace ATeamFitness.Models
     {
         [Key]
         public int PersonalTrainerId { get; set; }
+        public int TimeBlockId { get; set; }
         public string Name { get; set; }
         public int ZipCode { get; set; }
         public string Specialization { get; set; }
@@ -20,15 +21,11 @@ namespace ATeamFitness.Models
         public string Bio { get; set; }
         public string TrainerLocation { get; set; }
         public int Rating { get; set; }
-        public List<TimeBlock> TimeBlocks { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
-        public PersonalTrainer()
-        {
-            TimeBlocks = new List<TimeBlock>();
-        }
+
     }
 }

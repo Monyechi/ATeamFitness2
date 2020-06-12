@@ -68,7 +68,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonalTrainerId,Name,ZipCode,Specialization,Schedule,WorkoutCalendar,Bio,TrainerLocation,Rating,IdentityUserId")] PersonalTrainer personalTrainer)
+        public async Task<IActionResult> Create([Bind("PersonalTrainerId,Name,ZipCode,Specialization,Schedule,WorkoutCalendar,Bio,TrainerLocation,Rating,IdentityUserId")] PersonalTrainer personalTrainer,Random random)
         {
             if (ModelState.IsValid)
             {
@@ -173,15 +173,7 @@ namespace ATeamFitness.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateTimeBlock()
         {
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            //var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-
-            //if (personalTrainer == null)
-            //{
-            //    return NotFound();
-            //}
-
+          
             return View();
         }
         [HttpPost]
@@ -190,11 +182,26 @@ namespace ATeamFitness.Controllers
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            personalTrainer.TimeBlocks.Add(timeBlock);
-            _context.SaveChanges();            
+            TimeBlock newTimeBlock = new TimeBlock();
+            newTimeBlock = timeBlock;
+            newTimeBlock.TimeBlockId = personalTrainer.IdentityUserId;
+            _context.TimeBlocks.Add(newTimeBlock);
+            _context.SaveChanges();
 
-            return View(personalTrainer);
+            return RedirectToAction("Index");
         }
+        public async Task<IActionResult> ViewTimeBlocks()
+        {
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockId == personalTrainer.IdentityUserId).SingleOrDefault();
+            
+
+            return View(personalTrainerTimeBlocks);
+        }
+
+
     }
     
 }
