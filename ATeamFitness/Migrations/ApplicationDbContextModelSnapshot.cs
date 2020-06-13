@@ -32,6 +32,9 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DefaultPictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DietPlan")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,6 +51,9 @@ namespace ATeamFitness.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RewardPoint")
@@ -111,10 +117,16 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DefaultPictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
@@ -199,15 +211,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4494de3e-767c-4226-8246-189cd2e98a18",
-                            ConcurrencyStamp = "db418f03-cd3d-4442-9152-81fecf146ec4",
+                            Id = "944b3da4-86ae-422d-ae8f-e9ac93b2df77",
+                            ConcurrencyStamp = "48ed5d72-c212-4036-8c6a-72f4fd439642",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "79878f10-30be-4c94-8926-14eb2b6ad371",
-                            ConcurrencyStamp = "51ed1ec4-aa65-4da2-a3f2-1a774ba83e55",
+                            Id = "72faac38-a7c9-4c32-bb4e-2a6e72e311ea",
+                            ConcurrencyStamp = "afb8e56a-1575-49d6-99e4-b58a637285dc",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });

@@ -62,7 +62,7 @@
                             if (User.IsInRole("Trainer"))
                             {
                                 @*<li>
-                                    <a asp-area="" asp-controller="PersonalTrainers" asp-action="CreateTimeBlock">Create Time Block</a>
+                                    <a asp-area="" asp-controller="PersonalTrainers" asp-action="Edit">Edit Profile</a>
                                 </li>*@
                             }
                             if (User.IsInRole("Customer"))
@@ -86,11 +86,7 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
-        <div class="container">
-            &copy; 2020 - ATeamFitness - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

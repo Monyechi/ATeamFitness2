@@ -21,10 +21,13 @@ namespace ATeamFitness.Models
         public string Bio { get; set; }
         public string TrainerLocation { get; set; }
         public int Rating { get; set; }
+        public string PictureUrl { get; set; }
+        public string DefaultPictureUrl { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        
 
 
     }

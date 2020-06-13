@@ -23,6 +23,8 @@ namespace ATeamFitness.Models
         public string FitnessPlan { get; set; }
         public string DietPlan { get; set; }
         public int RewardPoint { get; set; }
+        public string PictureUrl { get; set; }
+        public string DefaultPictureUrl { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

@@ -4,93 +4,210 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>PersonalTrainer</h4>
-    <hr />
-    <dl class="row">
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Specialization)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Specialization)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Schedule)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Schedule)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkoutCalendar)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkoutCalendar)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
-
-
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainerLocation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TrainerLocation)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
-
-    </dl>
-</div>
 <style>
-    /* Set the size of the div element that contains the map */
     #map {
         height: 300px; /* The height is 400 pixels */
-        width: 350px; /* The width is the width of the web page */
+        width: 400px; /* The width is the width of the web page */
+        
+        
+    }
+    .bio{
+        width:400px;
+        color: black;
+        border:solid;
+        border-color:black;
+        position:relative;
+        bottom:97px;  
+        left:330px;
+        min-height: 320px;
+    }
+    .TrainerTable{
+        color:black;
+        font-size:20px;
+        width:500px;
+        position:relative;
+        left: 0%;
+        border-color:black;
+        border:solid;
+        top:340px;
+        
+    }
+    .bioTitle {
+        font-size: 20px;
+        font-weight: bolder;
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+body{
+    background-color:white;
+    
+    }
+    .bioContent {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+.ProfilePic {
+        width:320px;
+        height:320px;
         position: absolute;
-        right: 10px;
-        bottom: 100px;
-        top: 100px;
+        border:solid;
+        border-color:black;
+    }
+.mapTitle{
+    font-size:20px;
+    color:black;
+    font-weight: bolder;
+    margin-left:5px;
+    margin-top:10px;
+   
+}
+    .mapDiv {
+        border: solid;
+        border-color: black;
+        position: relative;
+        left: 330px;
+        bottom: 82px;
+        width:406px;
+        height:350px;
+
+    }
+    .DancingFruit{
+        position:relative;
+        left:68%;
+        bottom:769px;
+        height:700px;
+        width:600px;
+    }
+    .TimeBlock{
+        border:solid;
+        border-color:black;
+        position:relative;
+        width:320px;
+        color:black;
+        font-size:20px;
+        font-weight:bolder;
+        bottom:1020px;
+        
+    }
+    .button{
+        margin-bottom:10px;
+
+    }
+    .workoutText{
+        margin:10px;
+    }
+    .clickMe{
+        border:solid;
+        border-color:red;
+        width:130px;
     }
 </style>
+<div>
+    <h4 class="text-black-50">PersonalTrainer Profile</h4>
+
+    
+        <img class="ProfilePic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" />
+    
+
+    <table class="TrainerTable" style="width: 317px; height: 52px;">
+        <tbody>
+            <tr>
+                <td style="width: 120px;"><strong>&nbsp;Name:</strong></td>
+                <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td style="width: 120px;"><strong>&nbsp;Zip Code:</strong></td>
+                <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.ZipCode)</td>
+            </tr>
+            <tr>
+                <td style="width: 120px;"><strong>&nbsp;Specialization:</strong></td>
+                <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.Specialization)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="bio">
+        <p class="bioTitle">Bio</p>
+        <p class="bioContent">@Html.DisplayFor(model => model.Bio)</p>
+    </div>
+
+    @*<dl class="row">
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ZipCode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Specialization)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Specialization)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Schedule)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Schedule)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WorkoutCalendar)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WorkoutCalendar)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Bio)
+            </dt>
+
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Bio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TrainerLocation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TrainerLocation)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rating)
+
+        </dl>*@
+</div>
+
 
 <html>
 <body>
     <!--The div element for the map -->
-    <div id="map"></div>
-    <script>
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            var uluru = { lat: -25.344, lng: 131.036 };
-            // The map, centered at Uluru
-            var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 4, center: uluru });
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({ position: uluru, map: map });
-        }
-    </script>
+    <div class="mapDiv">
+        <div id="map"></div>
+        <label id="map" class="mapTitle">Workout Location</label>
+        <script>
+            // Initialize and add the map
+            function initMap() {
+                // The location of Uluru
+                var uluru = { lat: -25.344, lng: 131.036 };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 4, center: uluru });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({ position: uluru, map: map });
+            }
+        </script>
+    </div>
+
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
@@ -101,3 +218,10 @@
     </script>
 </body>
 </html>
+
+<img class="DancingFruit" src="https://media.giphy.com/media/fq76nclWQLf6R165re/giphy.gif" />
+
+<div class="TimeBlock">
+    <center><p class="workoutText">Click Here To Schedule A Workout With Me!</p></center>
+    <center><a asp-area="" asp-controller="Customers" asp-action="ViewTimeBlocks"><p class="clickMe">Click Me!</p></a></center>
+</div>

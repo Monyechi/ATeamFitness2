@@ -174,5 +174,15 @@ namespace ATeamFitness.Controllers
            
             return View(personalTrainersList);
         }
+        public async Task<IActionResult> ViewTimeBlocks()
+        {
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockIdentifier == personalTrainer.TimeBlockId).ToList();
+
+
+            return View(personalTrainerTimeBlocks);
+        }
     }
 }

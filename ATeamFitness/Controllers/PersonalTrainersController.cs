@@ -183,10 +183,8 @@ namespace ATeamFitness.Controllers
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            TimeBlock newTimeBlock = new TimeBlock();
-            newTimeBlock = timeBlock;
-            newTimeBlock.TimeBlockIdentifier = personalTrainer.TimeBlockId;
-            _context.TimeBlocks.Add(newTimeBlock);
+            timeBlock.TimeBlockIdentifier = personalTrainer.TimeBlockId;
+            _context.TimeBlocks.Add(timeBlock);
             _context.SaveChanges();
 
             return RedirectToAction("Index");

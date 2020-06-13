@@ -185,6 +185,8 @@ namespace ATeamFitness.Migrations
                     FitnessPlan = table.Column<string>(nullable: true),
                     DietPlan = table.Column<string>(nullable: true),
                     RewardPoint = table.Column<int>(nullable: false),
+                    PictureUrl = table.Column<string>(nullable: true),
+                    DefaultPictureUrl = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -237,6 +239,8 @@ namespace ATeamFitness.Migrations
                     Bio = table.Column<string>(nullable: true),
                     TrainerLocation = table.Column<string>(nullable: true),
                     Rating = table.Column<int>(nullable: false),
+                    PictureUrl = table.Column<string>(nullable: true),
+                    DefaultPictureUrl = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -253,12 +257,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4494de3e-767c-4226-8246-189cd2e98a18", "db418f03-cd3d-4442-9152-81fecf146ec4", "Customer", "CUSTOMER" });
+                values: new object[] { "944b3da4-86ae-422d-ae8f-e9ac93b2df77", "48ed5d72-c212-4036-8c6a-72f4fd439642", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "79878f10-30be-4c94-8926-14eb2b6ad371", "51ed1ec4-aa65-4da2-a3f2-1a774ba83e55", "Trainer", "TRAINER" });
+                values: new object[] { "72faac38-a7c9-4c32-bb4e-2a6e72e311ea", "afb8e56a-1575-49d6-99e4-b58a637285dc", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
