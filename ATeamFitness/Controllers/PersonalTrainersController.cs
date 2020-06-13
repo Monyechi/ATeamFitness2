@@ -185,7 +185,7 @@ namespace ATeamFitness.Controllers
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             TimeBlock newTimeBlock = new TimeBlock();
             newTimeBlock = timeBlock;
-            newTimeBlock.TimeBlockId = personalTrainer.TimeBlockId;
+            newTimeBlock.TimeBlockIdentifier = personalTrainer.TimeBlockId;
             _context.TimeBlocks.Add(newTimeBlock);
             _context.SaveChanges();
 
@@ -196,7 +196,7 @@ namespace ATeamFitness.Controllers
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockId == personalTrainer.TimeBlockId).ToList();
+            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockIdentifier == personalTrainer.TimeBlockId).ToList();
             
 
             return View(personalTrainerTimeBlocks);

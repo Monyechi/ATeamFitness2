@@ -91,7 +91,12 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("FoodOptionC")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("PlanId");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("DietPlans");
                 });
@@ -154,6 +159,9 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TimeBlockIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TimeBlockKey")
                         .HasColumnType("nvarchar(max)");
 
@@ -191,25 +199,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD
-                            Id = "0c5b44e2-12b3-42c0-ad8d-3e7285a89b2c",
-                            ConcurrencyStamp = "0157f590-fca9-4522-b77e-9d29233e433a",
-=======
-                            Id = "7cc54362-bf87-40f3-a98f-1164d3e6234c",
-                            ConcurrencyStamp = "f7f6fa27-292f-4211-8b5f-9998aa9ac759",
->>>>>>> 92a9cc1b237cb0fcd6782107d6aa7a026195be74
+                            Id = "4494de3e-767c-4226-8246-189cd2e98a18",
+                            ConcurrencyStamp = "db418f03-cd3d-4442-9152-81fecf146ec4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-<<<<<<< HEAD
-                            Id = "d2c06913-b9a3-4120-8f9e-c81bca7b4703",
-                            ConcurrencyStamp = "d5dd62d9-e7e1-44dd-9dec-39dec1331105",
-=======
-                            Id = "ef507c2c-f928-4a8a-823b-24d7134f2ac1",
-                            ConcurrencyStamp = "7efdb003-0bd8-4a0a-8f49-9d1e4c61c93b",
->>>>>>> 92a9cc1b237cb0fcd6782107d6aa7a026195be74
+                            Id = "79878f10-30be-4c94-8926-14eb2b6ad371",
+                            ConcurrencyStamp = "51ed1ec4-aa65-4da2-a3f2-1a774ba83e55",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
@@ -385,6 +383,13 @@ namespace ATeamFitness.Migrations
                 });
 
             modelBuilder.Entity("ATeamFitness.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("ATeamFitness.Models.DietPlans", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()

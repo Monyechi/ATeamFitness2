@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATeamFitness.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200612151749_dietplans")]
-    partial class dietplans
+    [Migration("20200613001347_newMigration")]
+    partial class newMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TimeBlockId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
@@ -90,7 +93,12 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("FoodOptionC")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("PlanId");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("DietPlans");
                 });
@@ -120,6 +128,9 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("Specialization")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TimeBlockId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TrainerLocation")
                         .HasColumnType("nvarchar(max)");
 
@@ -138,13 +149,8 @@ namespace ATeamFitness.Migrations
 
             modelBuilder.Entity("ATeamFitness.Models.TimeBlock", b =>
                 {
-                    b.Property<int>("TimeBlockId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("TimeBlockId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
@@ -152,19 +158,18 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonalTrainerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TimeBlockIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TimeBlockKey")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TimeBlockId");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("PersonalTrainerId");
-
-                    b.ToTable("TimeBlock");
+                    b.ToTable("TimeBlocks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -196,15 +201,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7cc54362-bf87-40f3-a98f-1164d3e6234c",
-                            ConcurrencyStamp = "f7f6fa27-292f-4211-8b5f-9998aa9ac759",
+                            Id = "4494de3e-767c-4226-8246-189cd2e98a18",
+                            ConcurrencyStamp = "db418f03-cd3d-4442-9152-81fecf146ec4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "ef507c2c-f928-4a8a-823b-24d7134f2ac1",
-                            ConcurrencyStamp = "7efdb003-0bd8-4a0a-8f49-9d1e4c61c93b",
+                            Id = "79878f10-30be-4c94-8926-14eb2b6ad371",
+                            ConcurrencyStamp = "51ed1ec4-aa65-4da2-a3f2-1a774ba83e55",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
@@ -386,22 +391,18 @@ namespace ATeamFitness.Migrations
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("ATeamFitness.Models.PersonalTrainer", b =>
+            modelBuilder.Entity("ATeamFitness.Models.DietPlans", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("ATeamFitness.Models.TimeBlock", b =>
+            modelBuilder.Entity("ATeamFitness.Models.PersonalTrainer", b =>
                 {
-                    b.HasOne("ATeamFitness.Models.Customer", null)
-                        .WithMany("TimeBlocks")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("ATeamFitness.Models.PersonalTrainer", null)
-                        .WithMany("TimeBlocks")
-                        .HasForeignKey("PersonalTrainerId");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
