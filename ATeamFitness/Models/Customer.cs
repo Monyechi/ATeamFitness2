@@ -13,12 +13,7 @@ namespace ATeamFitness.Models
         [Key]
         public int CustomerId { get; set; }
         public string TimeBlockId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string State { get; set; }
-        public int ZipCode { get; set; }
+        public string Name { get; set; }
         public string FitnessGoal { get; set; }
         public string FitnessPlan { get; set; }
         public string DietPlan { get; set; }
@@ -29,8 +24,12 @@ namespace ATeamFitness.Models
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        public Customer()
+        {
+            DefaultPictureUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+        }
 
 
-     
+
     }
 }

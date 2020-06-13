@@ -68,13 +68,46 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonalTrainerId,Name,ZipCode,Specialization,Schedule,WorkoutCalendar,Bio,TrainerLocation,Rating,IdentityUserId")] PersonalTrainer personalTrainer,Random random)
+        public async Task<IActionResult> Create([Bind("PersonalTrainerId,Name,Specialization,Bio,WorkoutLocation,PictureUrl,IdentityUserId")] PersonalTrainer personalTrainer,Random random)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 personalTrainer.IdentityUserId = userId;
                 personalTrainer.TimeBlockId = GenerateRandomAlphanumericString();
+                if (personalTrainer.PictureUrl == null)
+                {
+                    personalTrainer.ProfilePictureUrl = personalTrainer.DefaultPictureUrl;
+                }
+                else
+                {
+                    personalTrainer.ProfilePictureUrl = personalTrainer.PictureUrl;
+                }
+                if (personalTrainer.WorkoutLocation == "Union Square")
+                {
+                    personalTrainer.Lat = 40.7359;
+                    personalTrainer.Long = -73.9911;
+                }
+                else if (personalTrainer.WorkoutLocation == "Washington Square")
+                {
+                    personalTrainer.Lat = 40.730824;
+                    personalTrainer.Long = -73.997330;
+                }
+                else if (personalTrainer.WorkoutLocation == "Columbus Park")
+                {
+                    personalTrainer.Lat = 40.715054;
+                    personalTrainer.Long = -74.000084;
+                }
+                 else if (personalTrainer.WorkoutLocation == "Central Park")
+                {
+                    personalTrainer.Lat = 40.785091;
+                    personalTrainer.Long = -73.968285;
+                }
+                else if (personalTrainer.WorkoutLocation == "Rucker Park")
+                {
+                    personalTrainer.Lat = 40.8292;
+                    personalTrainer.Long = -73.9361;
+                }
                 _context.Add(personalTrainer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -105,7 +138,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonalTrainerId,Name,ZipCode,Specialization,Schedule,WorkoutCalendar,Bio,TrainerLocation,Rating,IdentityUserId")] PersonalTrainer personalTrainer)
+        public async Task<IActionResult> Edit(int id, [Bind("PersonalTrainerId,Name,ZipCode,Specialization,Bio,WorkoutLocation,PictureUrl,IdentityUserId")] PersonalTrainer personalTrainer)
         {
             if (id != personalTrainer.PersonalTrainerId)
             {
@@ -116,6 +149,14 @@ namespace ATeamFitness.Controllers
             {
                 try
                 {
+                    if (personalTrainer.PictureUrl == null)
+                    {
+                        personalTrainer.ProfilePictureUrl = personalTrainer.DefaultPictureUrl;
+                    }
+                    else
+                    {
+                        personalTrainer.ProfilePictureUrl = personalTrainer.PictureUrl;
+                    }
                     _context.Update(personalTrainer);
                     await _context.SaveChangesAsync();
                 }

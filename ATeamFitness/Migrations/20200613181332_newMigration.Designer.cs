@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATeamFitness.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200613154501_newMigration")]
+    [Migration("20200613181332_newMigration")]
     partial class newMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,19 +28,10 @@ namespace ATeamFitness.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddressLine1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DefaultPictureUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DietPlan")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FitnessGoal")
@@ -52,7 +43,7 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureUrl")
@@ -61,14 +52,8 @@ namespace ATeamFitness.Migrations
                     b.Property<int>("RewardPoint")
                         .HasColumnType("int");
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TimeBlockId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
 
                     b.HasKey("CustomerId");
 
@@ -125,17 +110,23 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<double>("Lat")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Long")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
-
-                    b.Property<string>("Schedule")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Specialization")
                         .HasColumnType("nvarchar(max)");
@@ -143,14 +134,8 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("TimeBlockId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TrainerLocation")
+                    b.Property<string>("WorkoutLocation")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WorkoutCalendar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
 
                     b.HasKey("PersonalTrainerId");
 
@@ -213,15 +198,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "944b3da4-86ae-422d-ae8f-e9ac93b2df77",
-                            ConcurrencyStamp = "48ed5d72-c212-4036-8c6a-72f4fd439642",
+                            Id = "70da0488-2ed3-44e8-b81d-ac4f10617537",
+                            ConcurrencyStamp = "2b2ba36b-9e31-4c68-8b0c-bcec06f55077",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "72faac38-a7c9-4c32-bb4e-2a6e72e311ea",
-                            ConcurrencyStamp = "afb8e56a-1575-49d6-99e4-b58a637285dc",
+                            Id = "0777dcee-a33d-4ccf-a1a4-ca3f4100ab05",
+                            ConcurrencyStamp = "7631a160-ed66-4a26-b982-183b2bb5bc40",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });

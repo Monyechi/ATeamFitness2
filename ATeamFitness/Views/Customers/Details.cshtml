@@ -23,7 +23,7 @@
     }
     .TrainerTable{
         color:black;
-        font-size:20px;
+        font-size:18px;
         width:500px;
         position:relative;
         left: 0%;
@@ -76,8 +76,8 @@ body{
         position:relative;
         left:68%;
         bottom:769px;
-        height:700px;
-        width:600px;
+        height:600px;
+        width:500px;
     }
     .TimeBlock{
         border:solid;
@@ -87,7 +87,7 @@ body{
         color:black;
         font-size:20px;
         font-weight:bolder;
-        bottom:1020px;
+        bottom:920px;
         
     }
     .button{
@@ -104,10 +104,10 @@ body{
     }
 </style>
 <div>
-    <h4 class="text-black-50">PersonalTrainer Profile</h4>
+    <h4 class="text-black-50">PersonalTrainer Profile</h4> 
 
     
-        <img class="ProfilePic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" />
+        <img class="ProfilePic" src="@Html.DisplayFor(model => model.ProfilePictureUrl)" />
     
 
     <table class="TrainerTable" style="width: 317px; height: 52px;">
@@ -117,8 +117,8 @@ body{
                 <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.Name)</td>
             </tr>
             <tr>
-                <td style="width: 120px;"><strong>&nbsp;Zip Code:</strong></td>
-                <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.ZipCode)</td>
+                <td style="width: 120px;"><strong>&nbsp;Location:</strong></td>
+                <td style="width: 248px;">&nbsp;@Html.DisplayFor(model => model.WorkoutLocation)</td>
             </tr>
             <tr>
                 <td style="width: 120px;"><strong>&nbsp;Specialization:</strong></td>
@@ -198,10 +198,10 @@ body{
             // Initialize and add the map
             function initMap() {
                 // The location of Uluru
-                var uluru = { lat: -25.344, lng: 131.036 };
+                var uluru = { lat: @Html.DisplayFor(model => model.Lat), lng: @Html.DisplayFor(model => model.Long) };
                 // The map, centered at Uluru
                 var map = new google.maps.Map(
-                    document.getElementById('map'), { zoom: 4, center: uluru });
+                    document.getElementById('map'), { zoom: 18, center: uluru });
                 // The marker, positioned at Uluru
                 var marker = new google.maps.Marker({ position: uluru, map: map });
             }

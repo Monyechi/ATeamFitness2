@@ -66,7 +66,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,AddressLine1,AddressLine2,State,ZipCode,FitnessGoal,FitnessPlan,DietPlan,RewardPoint,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,Name,FitnessGoal,FitnessPlan,DietPlan,PictureUrl,IdentityUserId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FirstName,LastName,AddressLine1,AddressLine2,State,ZipCode,FitnessGoal,FitnessPlan,DietPlan,RewardPoint,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,Name,FitnessGoal,FitnessPlan,DietPlan,IdentityUserId")] Customer customer)
         {
             if (id != customer.CustomerId)
             {

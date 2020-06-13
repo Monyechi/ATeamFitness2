@@ -175,12 +175,7 @@ namespace ATeamFitness.Migrations
                     CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TimeBlockId = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    AddressLine1 = table.Column<string>(nullable: true),
-                    AddressLine2 = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     FitnessGoal = table.Column<string>(nullable: true),
                     FitnessPlan = table.Column<string>(nullable: true),
                     DietPlan = table.Column<string>(nullable: true),
@@ -232,15 +227,15 @@ namespace ATeamFitness.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TimeBlockId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<int>(nullable: false),
                     Specialization = table.Column<string>(nullable: true),
-                    Schedule = table.Column<string>(nullable: true),
-                    WorkoutCalendar = table.Column<string>(nullable: true),
                     Bio = table.Column<string>(nullable: true),
-                    TrainerLocation = table.Column<string>(nullable: true),
+                    WorkoutLocation = table.Column<string>(nullable: true),
                     Rating = table.Column<int>(nullable: false),
                     PictureUrl = table.Column<string>(nullable: true),
                     DefaultPictureUrl = table.Column<string>(nullable: true),
+                    ProfilePictureUrl = table.Column<string>(nullable: true),
+                    Lat = table.Column<double>(nullable: false),
+                    Long = table.Column<double>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -257,12 +252,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "944b3da4-86ae-422d-ae8f-e9ac93b2df77", "48ed5d72-c212-4036-8c6a-72f4fd439642", "Customer", "CUSTOMER" });
+                values: new object[] { "70da0488-2ed3-44e8-b81d-ac4f10617537", "2b2ba36b-9e31-4c68-8b0c-bcec06f55077", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "72faac38-a7c9-4c32-bb4e-2a6e72e311ea", "afb8e56a-1575-49d6-99e4-b58a637285dc", "Trainer", "TRAINER" });
+                values: new object[] { "0777dcee-a33d-4ccf-a1a4-ca3f4100ab05", "7631a160-ed66-4a26-b982-183b2bb5bc40", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
