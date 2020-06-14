@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATeamFitness.Models
 {
-    public class DietPlans
+    public class DietPlan
     {
         [Key]
         public int PlanId { get; set; }

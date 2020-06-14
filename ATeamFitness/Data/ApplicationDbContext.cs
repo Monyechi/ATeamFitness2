@@ -37,6 +37,6 @@ namespace ATeamFitness.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<PersonalTrainer> PersonalTrainers { get; set; }
         public DbSet<TimeBlock> TimeBlocks { get; set; }
-        public DbSet<DietPlans> DietPlans { get; set; }
+        public DbSet<DietPlan> DietPlans { get; set; }
     }
 }

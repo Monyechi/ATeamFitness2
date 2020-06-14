@@ -11,8 +11,11 @@ using System.Security.Claims;
 
 namespace ATeamFitness.Controllers
 {
+    [ApiController]
     public class DietPlansController : Controller
     {
+       
+
         private readonly ApplicationDbContext _context;
 
         public DietPlansController(ApplicationDbContext context)
@@ -23,16 +26,14 @@ namespace ATeamFitness.Controllers
         // GET: DietPlans
         public async Task<IActionResult> Index()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var dietPlan = _context.DietPlans.Where(c => c.IdentityUserId == userId).SingleOrDefault();
 
-            if(dietPlan == null)
-            {
-                return RedirectToAction("Create");
-            }
-            return View(dietPlan);
+            var applicationDbContext = _context.DietPlans.Include(c => c.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
         }
+
+
+           
 
         // GET: DietPlans/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -42,21 +43,22 @@ namespace ATeamFitness.Controllers
                 return NotFound();
             }
 
-            var dietPlans = await _context.DietPlans
+            var dietPlan = await _context.DietPlans
                 .FirstOrDefaultAsync(m => m.PlanId == id);
-            if (dietPlans == null)
+            if (dietPlan == null)
             {
                 return NotFound();
             }
 
-            return View(dietPlans);
+            return View(dietPlan);
         }
 
         // GET: DietPlans/Create
         public IActionResult Create()
         {
+            DietPlan dietPlan = new DietPlan();
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            return View(dietPlan);
         }
 
         // POST: DietPlans/Create
@@ -64,7 +66,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlans dietPlans)
+        public async Task<IActionResult> Create([Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlan dietPlans)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +75,17 @@ namespace ATeamFitness.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(dietPlans);
+        }
+
+        // POST: api/TodoItems
+        [HttpPost]
+        public async Task<ActionResult<DietPlan>> PostTodoItem(DietPlan dietPlan)
+        {
+            _context.DietPlans.Add(dietPlan);
+            await _context.SaveChangesAsync();
+
+            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction(nameof(DietPlan), new { id = dietPlan.PlanId }, dietPlan);
         }
 
         // GET: DietPlans/Edit/5
@@ -96,7 +109,7 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlans dietPlans)
+        public async Task<IActionResult> Edit(int id, [Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlan dietPlans)
         {
             if (id != dietPlans.PlanId)
             {
