@@ -196,30 +196,6 @@ namespace ATeamFitness.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DietPlans",
-                columns: table => new
-                {
-                    PlanId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DietType = table.Column<string>(nullable: true),
-                    FitnessGoal = table.Column<string>(nullable: true),
-                    FoodOptionA = table.Column<string>(nullable: true),
-                    FoodOptionB = table.Column<string>(nullable: true),
-                    FoodOptionC = table.Column<string>(nullable: true),
-                    IdentityUserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DietPlans", x => x.PlanId);
-                    table.ForeignKey(
-                        name: "FK_DietPlans_AspNetUsers_IdentityUserId",
-                        column: x => x.IdentityUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PersonalTrainers",
                 columns: table => new
                 {
@@ -252,12 +228,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "70da0488-2ed3-44e8-b81d-ac4f10617537", "2b2ba36b-9e31-4c68-8b0c-bcec06f55077", "Customer", "CUSTOMER" });
+                values: new object[] { "87546f62-781f-4030-8559-2563a6610a3e", "02073e79-f657-4980-b268-e1a9cc3ecf76", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0777dcee-a33d-4ccf-a1a4-ca3f4100ab05", "7631a160-ed66-4a26-b982-183b2bb5bc40", "Trainer", "TRAINER" });
+                values: new object[] { "bc9e243a-1b76-4a58-a890-e7a1625cf46b", "0e71010b-3d3c-4a3f-b24d-fdf042650ba5", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -304,11 +280,6 @@ namespace ATeamFitness.Migrations
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DietPlans_IdentityUserId",
-                table: "DietPlans",
-                column: "IdentityUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PersonalTrainers_IdentityUserId",
                 table: "PersonalTrainers",
                 column: "IdentityUserId");
@@ -333,9 +304,6 @@ namespace ATeamFitness.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "DietPlans");
 
             migrationBuilder.DropTable(
                 name: "PersonalTrainers");

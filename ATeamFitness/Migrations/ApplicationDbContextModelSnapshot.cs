@@ -60,38 +60,6 @@ namespace ATeamFitness.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("ATeamFitness.Models.DietPlans", b =>
-                {
-                    b.Property<int>("PlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("DietType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FitnessGoal")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FoodOptionA")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FoodOptionB")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FoodOptionC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("PlanId");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("DietPlans");
-                });
-
             modelBuilder.Entity("ATeamFitness.Models.PersonalTrainer", b =>
                 {
                     b.Property<int>("PersonalTrainerId")
@@ -196,15 +164,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "70da0488-2ed3-44e8-b81d-ac4f10617537",
-                            ConcurrencyStamp = "2b2ba36b-9e31-4c68-8b0c-bcec06f55077",
+                            Id = "87546f62-781f-4030-8559-2563a6610a3e",
+                            ConcurrencyStamp = "02073e79-f657-4980-b268-e1a9cc3ecf76",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "0777dcee-a33d-4ccf-a1a4-ca3f4100ab05",
-                            ConcurrencyStamp = "7631a160-ed66-4a26-b982-183b2bb5bc40",
+                            Id = "bc9e243a-1b76-4a58-a890-e7a1625cf46b",
+                            ConcurrencyStamp = "0e71010b-3d3c-4a3f-b24d-fdf042650ba5",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });
@@ -380,13 +348,6 @@ namespace ATeamFitness.Migrations
                 });
 
             modelBuilder.Entity("ATeamFitness.Models.Customer", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-                });
-
-            modelBuilder.Entity("ATeamFitness.Models.DietPlans", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
