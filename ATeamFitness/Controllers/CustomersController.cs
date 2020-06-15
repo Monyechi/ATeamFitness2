@@ -193,6 +193,16 @@ namespace ATeamFitness.Controllers
 
             return View(SelectedTimeBlock);
         }
+        [HttpPost]
+        public async Task<IActionResult> Select(int CustomerId, string TimeBlockKey)
+        {
+
+
+            var SelectedTimeBlock = _context.TimeBlocks.Where(c => c.TimeBlockKey == TimeBlockKey).FirstOrDefault();
+
+
+            return View(SelectedTimeBlock);
+        }
 
         public string GenerateRandomAlphanumericString()
         {
@@ -207,6 +217,10 @@ namespace ATeamFitness.Controllers
 
             var finalString = new String(stringChars);
             return finalString;
+        }
+        public async Task<IActionResult> Confirmation()
+        {
+            return View();
         }
     }
 }

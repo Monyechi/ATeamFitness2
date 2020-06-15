@@ -219,7 +219,7 @@ namespace ATeamFitness.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTimeBlock(int id, [Bind("TimeBlockId,Date,Time,Location")] TimeBlock timeBlock)
+        public async Task<IActionResult> CreateTimeBlock(int id, [Bind("TimeBlockId,Date,Time")] TimeBlock timeBlock)
         {
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
