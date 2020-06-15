@@ -225,6 +225,9 @@ namespace ATeamFitness.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             timeBlock.TimeBlockIdentifier = personalTrainer.TimeBlockId;
+            timeBlock.TrainerName = personalTrainer.Name;
+            timeBlock.Location = personalTrainer.WorkoutLocation;
+            timeBlock.TimeBlockKey = GenerateRandomAlphanumericString();
             _context.TimeBlocks.Add(timeBlock);
             _context.SaveChanges();
 

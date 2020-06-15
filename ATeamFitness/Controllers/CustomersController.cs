@@ -72,6 +72,7 @@ namespace ATeamFitness.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                customer.TimeBlockId = GenerateRandomAlphanumericString();
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -177,12 +178,35 @@ namespace ATeamFitness.Controllers
         public async Task<IActionResult> ViewTimeBlocks()
         {
 
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var personalTrainer = _context.PersonalTrainers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var personalTrainerTimeBlocks = _context.TimeBlocks.Where(c => c.TimeBlockIdentifier == personalTrainer.TimeBlockId).ToList();
+            
+            var personalTrainerTimeBlocks = _context.TimeBlocks.ToList();
 
 
             return View(personalTrainerTimeBlocks);
+        }
+         public async Task<IActionResult> Select(string TimeBlockKey)
+        {
+
+
+            var SelectedTimeBlock = _context.TimeBlocks.Where(c => c.TimeBlockKey == TimeBlockKey).FirstOrDefault();
+
+
+            return View(SelectedTimeBlock);
+        }
+
+        public string GenerateRandomAlphanumericString()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[50];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+            return finalString;
         }
     }
 }

@@ -12,6 +12,9 @@
     <thead>
         <tr>            
             <th>
+                @Html.DisplayNameFor(model => model.TrainerName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
@@ -27,6 +30,9 @@
 @foreach (var item in Model) {
         <tr>            
             <td>
+                @Html.DisplayFor(modelItem => item.TrainerName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
@@ -36,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Select", "Select", new { id = item.TimeBlockKey }) |
             </td>
         </tr>
 }

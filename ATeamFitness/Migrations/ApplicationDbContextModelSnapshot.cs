@@ -130,6 +130,9 @@ namespace ATeamFitness.Migrations
                     b.Property<string>("TimeBlockKey")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TrainerName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TimeBlockId");
 
                     b.ToTable("TimeBlocks");
@@ -164,15 +167,15 @@ namespace ATeamFitness.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "87546f62-781f-4030-8559-2563a6610a3e",
-                            ConcurrencyStamp = "02073e79-f657-4980-b268-e1a9cc3ecf76",
+                            Id = "73b79cbe-58c4-49e2-846c-a28c3c507a4c",
+                            ConcurrencyStamp = "33967e83-e6ec-4be4-8340-538c561d5260",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "bc9e243a-1b76-4a58-a890-e7a1625cf46b",
-                            ConcurrencyStamp = "0e71010b-3d3c-4a3f-b24d-fdf042650ba5",
+                            Id = "93c7b12a-4c51-4b87-b74d-4272f2e8f3cf",
+                            ConcurrencyStamp = "6665c9a0-bdb4-4aca-9f17-82d25b2ce461",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         });

@@ -53,6 +53,7 @@ namespace ATeamFitness.Migrations
                     TimeBlockId = table.Column<string>(nullable: false),
                     TimeBlockIdentifier = table.Column<string>(nullable: true),
                     TimeBlockKey = table.Column<string>(nullable: true),
+                    TrainerName = table.Column<string>(nullable: true),
                     Date = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true)
@@ -228,12 +229,12 @@ namespace ATeamFitness.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "87546f62-781f-4030-8559-2563a6610a3e", "02073e79-f657-4980-b268-e1a9cc3ecf76", "Customer", "CUSTOMER" });
+                values: new object[] { "73b79cbe-58c4-49e2-846c-a28c3c507a4c", "33967e83-e6ec-4be4-8340-538c561d5260", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "bc9e243a-1b76-4a58-a890-e7a1625cf46b", "0e71010b-3d3c-4a3f-b24d-fdf042650ba5", "Trainer", "TRAINER" });
+                values: new object[] { "93c7b12a-4c51-4b87-b74d-4272f2e8f3cf", "6665c9a0-bdb4-4aca-9f17-82d25b2ce461", "Trainer", "TRAINER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
