@@ -23,6 +23,8 @@ namespace ATeamFitness.Models
 
         public string FoodOptionC { get; set; }
 
+        
+
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }

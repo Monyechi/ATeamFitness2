@@ -8,10 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using ATeamFitness.Data;
 using ATeamFitness.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATeamFitness.Controllers
+    
 {
-    [ApiController]
+    
+    [Authorize(Roles = "Customer")]
+    
     public class DietPlansController : Controller
     {
        
@@ -36,6 +40,8 @@ namespace ATeamFitness.Controllers
            
 
         // GET: DietPlans/Details/5
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
