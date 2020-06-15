@@ -66,16 +66,37 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlan dietPlans)
+        public async Task<IActionResult> Create([Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC,Identity UserId")] DietPlan dietPlan)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dietPlans);
+                if (dietPlan.PlanId == 0)
+                {
+                    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    dietPlan.IdentityUserId = userId;
+                    _context.DietPlans.Add(dietPlan);
+                }
+
+                else
+                {
+                    var dietPlanInDb = _context.DietPlans.Single(c => c.PlanId == dietPlan.PlanId);
+                    dietPlanInDb.DietType = dietPlan.DietType;
+                    dietPlanInDb.FitnessGoal = dietPlan.FitnessGoal;
+                    dietPlanInDb.FoodOptionA = dietPlan.FoodOptionA;
+                    dietPlanInDb.FoodOptionB = dietPlan.FoodOptionB;
+                    dietPlanInDb.FoodOptionC = dietPlan.FoodOptionC;
+                }
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = dietPlan.PlanId.ToString() });
+
             }
-            return View(dietPlans);
-        }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "PlanId", "PlanId", dietPlan.IdentityUserId);
+            return View(dietPlan);
+
+
+
+
+       }
 
         // POST: api/TodoItems
         [HttpPost]
@@ -109,9 +130,9 @@ namespace ATeamFitness.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC")] DietPlan dietPlans)
+        public async Task<IActionResult> Edit(int id, [Bind("PlanId,DietType,FitnessGoal,FoodOptionA,FoodOptionB,FoodOptionC,Identity UserId")]DietPlan dietPlan)
         {
-            if (id != dietPlans.PlanId)
+           if(id != dietPlan.PlanId)
             {
                 return NotFound();
             }
@@ -120,12 +141,19 @@ namespace ATeamFitness.Controllers
             {
                 try
                 {
-                    _context.Update(dietPlans);
+                    var dietPlanInDb = _context.DietPlans.Single(c => c.PlanId == dietPlan.PlanId);
+                    dietPlanInDb.DietType = dietPlan.DietType;
+                    dietPlanInDb.FitnessGoal = dietPlan.FitnessGoal;
+                    dietPlanInDb.FoodOptionA = dietPlan.FoodOptionA;
+                    dietPlanInDb.FoodOptionB = dietPlan.FoodOptionB;
+                    dietPlanInDb.FoodOptionC = dietPlan.FoodOptionC;
+
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DietPlansExists(dietPlans.PlanId))
+                    if ( !DietPlansExists (dietPlan.PlanId))
                     {
                         return NotFound();
                     }
@@ -134,9 +162,10 @@ namespace ATeamFitness.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = dietPlan.PlanId.ToString() });
             }
-            return View(dietPlans);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "PlanId", "PlanId", dietPlan.IdentityUserId);
+            return View(dietPlan);
         }
 
         // GET: DietPlans/Delete/5
@@ -147,14 +176,14 @@ namespace ATeamFitness.Controllers
                 return NotFound();
             }
 
-            var dietPlans = await _context.DietPlans
+            var dietPlan = await _context.DietPlans
                 .FirstOrDefaultAsync(m => m.PlanId == id);
-            if (dietPlans == null)
+            if (dietPlan == null)
             {
                 return NotFound();
             }
 
-            return View(dietPlans);
+            return View(dietPlan);
         }
 
         // POST: DietPlans/Delete/5
@@ -162,8 +191,8 @@ namespace ATeamFitness.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dietPlans = await _context.DietPlans.FindAsync(id);
-            _context.DietPlans.Remove(dietPlans);
+            var dietPlan = await _context.DietPlans.FindAsync(id);
+            _context.DietPlans.Remove(dietPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
