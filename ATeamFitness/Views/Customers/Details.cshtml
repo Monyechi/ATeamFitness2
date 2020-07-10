@@ -102,6 +102,9 @@ body{
         border-color:red;
         width:130px;
     }
+    .Rating{
+        color:black;
+    }
 </style>
 <div>
     <h4 class="text-black-50">PersonalTrainer Profile</h4> 
@@ -131,60 +134,6 @@ body{
         <p class="bioTitle">Bio</p>
         <p class="bioContent">@Html.DisplayFor(model => model.Bio)</p>
     </div>
-
-    @*<dl class="row">
-
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ZipCode)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Specialization)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Specialization)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Schedule)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Schedule)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.WorkoutCalendar)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.WorkoutCalendar)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Bio)
-            </dt>
-
-
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Bio)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.TrainerLocation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.TrainerLocation)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Rating)
-
-        </dl>*@
 </div>
 
 
@@ -224,4 +173,23 @@ body{
 <div class="TimeBlock">
     <center><p class="workoutText">Click Here To Schedule A Workout With Me!</p></center>
     <center><a asp-area="" asp-controller="Customers" asp-action="ViewTimeBlocks"><p class="clickMe">Click Me!</p></a></center>
+
+    <center>
+        <div>
+            <p>&nbsp;</p>
+            <table style="height: 71px; width: 96px;">
+                <tbody>
+                    <tr style="height: 44px;">
+                        <td class="Rating" style="width: 56px; height: 44px;">@Html.DisplayFor(model => model.ThumbsDown)</td>
+                        <td class="Rating" style="width: 55px; height: 44px;">@Html.DisplayFor(model => model.ThumbsUp)</td>
+                    </tr>
+                    <tr style="height: 10.5px;">
+                        <td style="width: 56px; height: 10.5px;"><a asp-action="ThumbsDown" asp-route-id="@Model.PersonalTrainerId"><img src="http://clipart-library.com/newhp/clipart-thumbs-down-thumb-signal-11562939569knc6bhoc48.png" alt="clipart thumbs down - thumb signal PNG image with transparent " width="56" height="57" /></a></td>
+                        <td style="width: 55px; height: 10.5px;"><a asp-action="ThumbsUp" asp-route-id="@Model.PersonalTrainerId"><img src="http://clipart-library.com/newimages/thumbs-up-clipart-2-14.jpg" alt="Symbol thumbs up clip art" width="55" height="55" /></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>&nbsp;</p>           
+        </div>
+    </center>
 </div>

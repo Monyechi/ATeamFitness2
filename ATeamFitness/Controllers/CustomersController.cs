@@ -222,5 +222,22 @@ namespace ATeamFitness.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> ThumbsUp(int? id)
+        {
+            var PersonalTrainer = _context.PersonalTrainers.Where(p => p.PersonalTrainerId == id).FirstOrDefault();
+            PersonalTrainer.ThumbsUp++;
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> ThumbsDown(int? id)
+        {
+            var PersonalTrainer = _context.PersonalTrainers.Where(p => p.PersonalTrainerId == id).FirstOrDefault();
+            PersonalTrainer.ThumbsDown++;
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
